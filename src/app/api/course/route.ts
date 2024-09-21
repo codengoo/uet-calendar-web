@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { google } from 'googleapis';
 import { Calendar, ICalendar, Subject, SubjectPipeline, SubjectStudent } from "@nghiavuive/uet-course";
+import {getSocket} from "../../../libs/socket"
 
 export async function GET(request: NextRequest) {
   const studentID = request.nextUrl.searchParams.get("sid") || "";
@@ -29,24 +30,44 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   const token = request.cookies.get('token')?.value || "";
+  const socketID = request.cookies.get('socket_id')?.value || "";
 
-  const oAuth2Client = new google.auth.OAuth2(
-    process.env.GOOGLE_CLIENT_ID,
-    process.env.GOOGLE_CLIENT_SECRET
-  );
+  const io = getSocket(); 
+  const socket = io.sockets.sockets.get(socketID);
 
-  oAuth2Client.setCredentials({
-    access_token: token,
-  });
+  socket.emit("hello", "welcome");
 
-  const calendar = google.calendar({ version: 'v3', auth: oAuth2Client });
-  const events = await calendar.events.list({
-    calendarId: 'primary',
-    timeMin: new Date().toISOString(),
-    maxResults: 10,
-    singleEvents: true,
-    orderBy: 'startTime',
-  });
+  // const oAuth2Client = new google.auth.OAuth2(
+  //   process.env.GOOGLE_CLIENT_ID,
+  //   process.env.GOOGLE_CLIENT_SECRET
+  // );
 
-  return Response.json({data: events.data.items})
+  // oAuth2Client.setCredentials({
+  //   access_token: token,
+  // });
+
+  // const GCalendar = google.calendar({ version: 'v3', auth: oAuth2Client });
+  // const calendar = await GCalendar.calendars.insert({
+  //   requestBody: {
+  //     summary: "Thoi khoa bieu"
+  //   }
+  // })
+
+  // const events = await GCalendar.events.insert({
+  //   calendarId: calendar.data.id!,
+  //   requestBody: {
+  //     summary: "Test event",
+  //     start: {
+  //       dateTime: (new Date()).toJSON(),
+  //       timeZone: 'Asia/Ho_Chi_Minh',
+  //     },
+  //     end: {
+  //       dateTime: (new Date((new Date()).getTime() + 30 * 60 * 1000)).toJSON(),
+  //       timeZone: 'Asia/Ho_Chi_Minh',
+  //     },
+  //   }
+  // })
+
+  // return Response.json({ calendar, events })
+  return Response.json({})
 }
