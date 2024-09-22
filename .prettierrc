@@ -1,0 +1,14 @@
+{
+    "importOrder": [
+        "^@components/(.*)$",
+        "^@ui/(.*)$",
+        "^@layout/(.*)$",
+        "^[./]"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true,
+    "tabWidth": 4,
+    "plugins": [
+        "@trivago/prettier-plugin-sort-imports"
+    ]
+}

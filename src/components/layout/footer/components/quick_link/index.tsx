@@ -1,11 +1,11 @@
 import { FaArrowRightLong } from "react-icons/fa6";
 
-interface ILink {
+export interface IQuickLinkProps {
     href: string;
     title: string;
 }
 
-export default function Link({ href, title }: ILink) {
+export default function QuickLink({ href, title }: IQuickLinkProps) {
     return (
         <a href={href} className="group text-white flex gap-3 items-center">
             {title}
