@@ -4,6 +4,8 @@ import axios from "axios";
 import { socket } from "../socket";
 import { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
+import Headline from "./components/headline";
+import Panel from "./components/panel";
 
 export default function Home() {
   const [isConnected, setIsConnected] = useState(false);
@@ -73,7 +75,12 @@ export default function Home() {
 
   return (
     <div>
-      <p>Status: {isConnected ? "connected" : "disconnected"}</p>
+      <section className="relative h-screen w-screen container mx-auto before:absolute before:top-[50px] before:left-[50px] before:w-[600px] before:h-[600px] before:bg-[url('/hero-pattern.svg')] after:absolute after:bottom-[50px] after:right-[50px] after:w-[600px] after:h-[600px] after:bg-[url('/hero-pattern.svg')]">
+        <Headline />
+        <Panel />
+      </section>
+
+      {/* <p>Status: {isConnected ? "connected" : "disconnected"}</p>
       <p>Transport: {transport}</p>
 
       <form>
@@ -86,7 +93,7 @@ export default function Home() {
 
       <button onClick={createCalendar}>
         Tao lich
-      </button>
+      </button> */}
     </div>
   );
 }
