@@ -62,5 +62,6 @@ export const selectSubjectStatus = createSelector(
 );
 
 export const selectStudentInfo = (state: RootState) => state.course.studentInfo
+export const selectCalendarInfo = (state: RootState) => state.course.calendar;
 
 export default courseSlice.reducer

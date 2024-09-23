@@ -20,7 +20,7 @@ export default function BrowsingBodyPanel({
                     className="h-full w-full border-none bg-primary/10 py-3 text-center indent-5 text-2xl font-bold tracking-[1em] text-primary transition-all placeholder:text-primary/50 focus:bg-primary/20 focus:outline-none"
                     type="number"
                     pattern="[0-9]*"
-                    placeholder="21020365"
+                    placeholder="22025130"
                     maxLength={8}
                     minLength={8}
                     onChange={onChangeValue}

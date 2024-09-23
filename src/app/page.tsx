@@ -1,17 +1,23 @@
 "use client";
 
-import { useAppDispatch } from "@/hooks/redux";
+import Container from "@/components/layout/conatainer";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { socket } from "@/libs/socket/socket-client";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 
-import { setSubjectFetchingMessage } from "@libs/redux";
+import { selectStudentInfo, setSubjectFetchingMessage } from "@libs/redux";
 
 import Headline from "@components/headline";
 import Panel from "@components/panel";
 
+import DetailBodyPanel from "./components/detail_body_pannel";
+import Tab from "./components/panel/components/tab";
+import Preview from "./components/preview";
+
 export default function Home() {
     const dispatch = useAppDispatch();
+    const data = useAppSelector(selectStudentInfo);
 
     useEffect(() => {
         if (socket.connected) {
@@ -43,9 +49,50 @@ export default function Home() {
     }, []);
 
     return (
-        <section className="container relative mx-auto h-screen w-screen px-5 before:absolute before:left-[50px] before:top-[50px] before:w-full before:bg-[url('/hero-pattern.svg')] after:absolute after:bottom-[50px] after:right-[50px] after:w-full after:bg-[url('/hero-pattern.svg')] sm:before:h-[600px] sm:before:w-[600px] sm:after:h-[600px] sm:after:w-[600px]">
-            <Headline />
-            <Panel />
-        </section>
+        <div className="relative">
+            <Container>
+                <Headline />
+                <Panel />
+            </Container>
+
+            {data ? (
+                <>
+                    <Container id="detail">
+                        <div className="flex flex-row justify-between">
+                            <div className="relative z-10 mb-16 w-1/2 rounded-2xl bg-white shadow-2xl">
+                                <Tab
+                                    data={[
+                                        {
+                                            body: <DetailBodyPanel />,
+                                            title: "Detail",
+                                        },
+                                        { body: <></>, title: "Settings" },
+                                    ]}
+                                />
+                            </div>
+
+                            <Preview />
+                        </div>
+                    </Container>
+
+                    <div className="absolute left-[55%] top-[50vh] flex h-[75vh] flex-col items-center">
+                        <div className="flex flex-shrink flex-col gap-5 overflow-hidden rounded-full">
+                            {[...new Array(50)].map((i) => (
+                                <div
+                                    key={"dot__" + i}
+                                    className="h-3 w-1 flex-none rounded-full bg-primary/30"
+                                ></div>
+                            ))}
+                        </div>
+                        <div className="relative">
+                            <div className="absolute left-[4px] top-[4px] h-5 w-5 flex-none rounded-full bg-primary"></div>
+                            <div className="h-7 w-7 flex-none animate-ping rounded-full bg-primary/50"></div>
+                        </div>
+                    </div>
+                </>
+            ) : (
+                <></>
+            )}
+        </div>
     );
 }

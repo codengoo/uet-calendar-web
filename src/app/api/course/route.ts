@@ -29,12 +29,13 @@ export async function GET(request: NextRequest) {
     return ({
       student: item.student,
       calendar: item.subjects
-        .map(sub => {
-          return allCalendar.find(i =>
+        .map(sub =>
+          allCalendar.filter(i =>
             i.subjectClassCode === sub.subjectCode &&
             (i.group === "CL" || i.group === sub.group)
-          )
-        }).filter(cal => !!cal)
+          ))
+        .filter(cal => !!cal)
+        .flat()
     })
   });
 

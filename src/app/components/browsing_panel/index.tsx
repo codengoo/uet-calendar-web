@@ -6,8 +6,8 @@ import { toast } from "react-toastify";
 
 import {
     fetchSubjectsBySID,
-    selectSubject,
     selectSubjectStatus,
+    setSubjectFetchingMessage,
 } from "@libs/redux";
 
 import BottomPanel from "../bottom_panel";
@@ -17,16 +17,24 @@ export default function BrowsingPanel() {
     const [studentId, setStudentId] = useState("");
     const dispatch = useAppDispatch();
     const { isFetched, status, message } = useAppSelector(selectSubjectStatus);
-    const calendar = useAppSelector(selectSubject);
 
     function handleProcess() {
+        dispatch(setSubjectFetchingMessage("Pending"));
         dispatch(fetchSubjectsBySID(studentId));
     }
 
     useEffect(() => {
         if (isFetched) {
             if (status === "rejected") toast.error(message);
-            else if (status === "fulfilled") toast.success(message);
+            else if (status === "fulfilled") {
+                toast.success(message);
+                document
+                    .getElementById("detail")
+                    ?.scrollIntoView({ behavior: "smooth" });
+
+                console.log(document.getElementById("detail"));
+                
+            }
         }
     }, [isFetched, status]);
 
@@ -37,6 +45,7 @@ export default function BrowsingPanel() {
                 onClick={handleProcess}
                 status={message}
                 disabled={!isFetched || studentId.length !== 8}
+                isLoading={!isFetched}
             />
         </div>
     );
