@@ -1,5 +1,6 @@
 {
     "importOrder": [
+        "^@libs/(.*)$",
         "^@components/(.*)$",
         "^@ui/(.*)$",
         "^@layout/(.*)$",
@@ -9,6 +10,7 @@
     "importOrderSortSpecifiers": true,
     "tabWidth": 4,
     "plugins": [
-        "@trivago/prettier-plugin-sort-imports"
+        "@trivago/prettier-plugin-sort-imports",
+        "prettier-plugin-tailwindcss"
     ]
 }

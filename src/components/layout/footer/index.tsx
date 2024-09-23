@@ -1,7 +1,13 @@
 import { useMemo } from "react";
-import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
-import { SiGmail } from "react-icons/si";
-import { TbBrightnessUp, TbHeartFilled, TbMoon } from "react-icons/tb";
+import {
+    TbBrandFacebook,
+    TbBrandGithub,
+    TbBrandGmail,
+    TbBrandLinkedin,
+    TbBrightnessUp,
+    TbHeartFilled,
+    TbMoon,
+} from "react-icons/tb";
 
 import Logo from "@ui/logo";
 import NavLink from "@ui/navlink";
@@ -49,18 +55,24 @@ export default function Footer() {
 
     return (
         <footer className="bg-primary py-10">
-            <div className="container mx-auto">
-                <section className="flex flex-row items-start justify-between">
-                    <div className="w-1/3 mb-5">
-                        <Logo mode="white" />
-                        <p className="text-white font-light">
+            <div className="container mx-auto px-10">
+                <section className="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between mb-10 md:mb-0">
+                    <div className="w-full xs:w-2/3 md:w-1/3 mb-10 md:mb-5 flex flex-col items-center md:items-start">
+                        <Logo mode="white" className="hidden md:flex" />
+                        <Logo
+                            mode="white"
+                            direction="vertical"
+                            className="flex md:hidden"
+                        />
+
+                        <p className="text-white font-light text-center md:text-left">
                             Easily browsing, modifying, creating tour own
                             calendar and more with UET students. It is
                             completely free and no sign-up required
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-12 w-1/2">
+                    <div className="grid gap-y-4 xs:gap-y-0 grid-cols-4 xxs:grid-cols-8 xs:grid-cols-12 w-full md:w-3/5 lg:w-1/2">
                         <NavSec {...project_section} />
                         <NavSec {...references_section} />
                         <NavSec {...explore_section} />
@@ -82,11 +94,27 @@ export default function Footer() {
                     </p>
                     <div className="flex flex-row justify-between items-center">
                         <div className="flex flex-row gap-1">
-                            <NavLink href="#" mode="white" icon={FaGithub} />
+                            <NavLink
+                                href="#"
+                                mode="white"
+                                icon={TbBrandGithub}
+                            />
                             <div className="border-l border-white/20"></div>
-                            <NavLink href="#" mode="white" icon={FaFacebook} />
-                            <NavLink href="#" mode="white" icon={FaLinkedin} />
-                            <NavLink href="#" mode="white" icon={SiGmail} />
+                            <NavLink
+                                href="#"
+                                mode="white"
+                                icon={TbBrandFacebook}
+                            />
+                            <NavLink
+                                href="#"
+                                mode="white"
+                                icon={TbBrandLinkedin}
+                            />
+                            <NavLink
+                                href="#"
+                                mode="white"
+                                icon={TbBrandGmail}
+                            />
                         </div>
 
                         <div className="flex items-center gap-5">

@@ -1,8 +1,8 @@
-import NavLink from "@/components/ui/navlink";
+import NavLink from "@ui/navlink";
 
 export default function Nav() {
     return (
-        <nav>
+        <nav className="hidden md:block">
             <ul className="flex flex-row list-none gap-5">
                 <li>
                     <NavLink href="#" title="Home" />

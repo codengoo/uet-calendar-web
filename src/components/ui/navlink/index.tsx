@@ -1,13 +1,13 @@
 import { IconType } from "react-icons";
 
-interface INavLink {
+interface INavLinkProps {
     href: string;
     title?: string;
     icon?: IconType,
     mode?: "color" | "white"
 }
 
-export default function NavLink({ href, title, icon: Icon, mode = "color" }: INavLink) {
+export default function NavLink({ href, title, icon: Icon, mode = "color" }: INavLinkProps) {
     return (
         <div className={
             "py-1 rounded-lg group " +

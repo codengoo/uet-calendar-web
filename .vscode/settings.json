@@ -2,6 +2,10 @@
     // "editor.formatOnSave": true,
     // "editor.formatOnPaste": true,
     "editor.codeActionsOnSave": {
-        "source.removeUnusedImports": true
-    }
+        "source.removeUnusedImports": "explicit"
+    },
+    "cSpell.words": [
+        "flowbite",
+        "reduxjs"
+    ]
 }

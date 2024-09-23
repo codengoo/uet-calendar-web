@@ -1,7 +1,6 @@
 import { NextRequest } from "next/server";
-import { google } from 'googleapis';
 import { Calendar, ICalendar, Subject, SubjectPipeline, SubjectStudent } from "@nghiavuive/uet-course";
-import {getSocket} from "../../../libs/socket"
+import { getSocket } from "../../../libs/socket/socket";
 
 export async function GET(request: NextRequest) {
   const studentID = request.nextUrl.searchParams.get("sid") || "";

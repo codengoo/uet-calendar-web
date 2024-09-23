@@ -25,6 +25,9 @@
       "@/*": [
         "./src/*"
       ],
+      "@libs/*": [
+        "./src/libs/*"
+      ],
       "@components/*": [
         "./src/app/components/*"
       ],
@@ -41,7 +44,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/libs/socket.js"
+    "src/libs/socket/socket.ts"
   ],
   "exclude": [
     "node_modules"
