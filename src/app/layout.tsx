@@ -1,5 +1,8 @@
+import { StoreProvider } from "@/libs/redux";
 import type { Metadata } from "next";
 import { Kanit } from "next/font/google";
+
+import ToastProvider from "@ui/toastify";
 
 import Footer from "@layout/footer";
 import Header from "@layout/header";
@@ -23,8 +26,9 @@ export default function RootLayout({
         <html lang="en">
             <body className={kanit.className + " bg-gray-50"}>
                 <Header />
-                {children}
+                <StoreProvider>{children}</StoreProvider>
                 <Footer />
+                <ToastProvider classFont={kanit.className} />
             </body>
         </html>
     );

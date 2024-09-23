@@ -1,9 +1,16 @@
 import { NextRequest } from "next/server";
 import { Calendar, ICalendar, Subject, SubjectPipeline, SubjectStudent } from "@nghiavuive/uet-course";
 import { getSocket } from "../../../libs/socket/socket";
+import { IGetCourseResponse } from "@/app/types";
 
 export async function GET(request: NextRequest) {
   const studentID = request.nextUrl.searchParams.get("sid") || "";
+  const socketID = request.cookies.get('socket_id')?.value || "";
+
+  const io = getSocket();
+  const socket = io.sockets.sockets.get(socketID);
+
+  socket?.emit("course_api_progress", "Collecting data...");
 
   const subjectPipeline = new SubjectPipeline();
   subjectPipeline.addAggregateBySID();
@@ -16,22 +23,31 @@ export async function GET(request: NextRequest) {
     calendar.craw<ICalendar[]>()
   ]);
 
-  const data = studentCourse.map((item) => {
-    return item.subjects.map(sub => {
-      // @ts-ignore
-      return allCalendar.find(i => i.subjectClassCode === sub.subjectCode && (i.group === "CL" || i.group === sub.group)
-      )
+  socket?.emit("course_api_progress", "Gathering data...");
+
+  const data = studentCourse.map<IGetCourseResponse>((item) => {
+    return ({
+      student: item.student,
+      calendar: item.subjects
+        .map(sub => {
+          return allCalendar.find(i =>
+            i.subjectClassCode === sub.subjectCode &&
+            (i.group === "CL" || i.group === sub.group)
+          )
+        }).filter(cal => !!cal)
     })
   });
 
-  return Response.json(data[0]);
+  socket?.emit("course_api_progress", "Processed data successfully...");
+
+  return Response.json(data[0] || {})
 }
 
 export async function POST(request: NextRequest) {
   const token = request.cookies.get('token')?.value || "";
   const socketID = request.cookies.get('socket_id')?.value || "";
 
-  const io = getSocket(); 
+  const io = getSocket();
   const socket = io.sockets.sockets.get(socketID);
 
   socket.emit("hello", "welcome");

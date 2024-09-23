@@ -1,10 +1,10 @@
-import { Server } from 'socket.io'; // Import Socket.io Server class
+import { Server } from 'socket.io';
 
 let io;
 
 export const initSocket = (server) => {
     if (!global.io) {
-        global.io = new Server(server); // Initialize Socket.io using ES module syntax
+        global.io = new Server(server);
         global.io.on('connection', (socket) => {
             console.log(`Client connected: ${socket.id}`);
 

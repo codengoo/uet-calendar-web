@@ -1,7 +1,5 @@
-import { socket } from "@/socket";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
+import { useState } from "react";
 
 export default function Abc() {
   const [isConnected, setIsConnected] = useState(false);
@@ -33,42 +31,6 @@ export default function Abc() {
 
     });
   }
-
-  useEffect(() => {
-    if (socket.connected) {
-      onConnect();
-      console.log(socket.id);
-      Cookies.set('socket_id', socket.id || "");
-    }
-
-    function onConnect() {
-      setIsConnected(true);
-      setTransport(socket.io.engine.transport.name);
-
-      socket.io.engine.on("upgrade", (transport) => {
-        setTransport(transport.name);
-      });
-    }
-
-    function onDisconnect() {
-      setIsConnected(false);
-      setTransport("N/A");
-    }
-
-    socket.on("hello", (value) => {
-      console.log("value from  client: ", value);
-
-    });
-
-    socket.on("connect", onConnect);
-    socket.on("disconnect", onDisconnect);
-
-    return () => {
-      socket.off("connect", onConnect);
-      socket.off("disconnect", onDisconnect);
-    };
-  }, []);
-
 
   return (
     <div>
