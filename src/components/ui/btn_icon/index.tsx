@@ -6,8 +6,11 @@ interface UetBtnIconProps {
 }
 export default function UetBtnIcon({ icon: Icon, onClick }: UetBtnIconProps) {
     return (
-        <div className="cursor-pointer w-10 h-10 rounded-md bg-primary/5 hover:bg-primary/20 flex justify-center items-center">
-            <Icon size={22} className="text-primary "/>
-        </div>
+        <button
+            onClick={onClick}
+            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-md bg-primary/5 hover:bg-primary/20"
+        >
+            <Icon size={22} className="text-primary" />
+        </button>
     );
 }

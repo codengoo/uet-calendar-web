@@ -8,3 +8,6 @@ export { default as UetBtnIcon } from "./btn_icon";
 export { default as UetNavLink } from "./navlink";
 export { default as UetBtn } from "./btn";
 export { default as UetTab } from "./tab";
+export { default as UetProgressPopup } from "./progress";
+
+export * from "./progress";

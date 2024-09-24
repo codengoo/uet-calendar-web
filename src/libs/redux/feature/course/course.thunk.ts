@@ -1,4 +1,4 @@
-import { IGetCourseResponse } from "@/app/types";
+import { IGetCourseResponse } from "@/types";
 import axios from "@/libs/axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 

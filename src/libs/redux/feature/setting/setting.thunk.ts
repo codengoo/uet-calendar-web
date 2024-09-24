@@ -7,8 +7,8 @@ export const createCalendar = createAsyncThunk(
     async (_, { getState }) => {
         const state = getState() as RootState;
 
-        const response = await axios.post<{}>("/course", {
-            settings: state.setting
+        const response = await axios.post("/course", {
+            ...state.setting.settings
         });
 
         if (response.status !== 200) return Promise.reject(response.statusText);

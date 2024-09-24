@@ -1,7 +1,5 @@
 import { Server } from 'socket.io';
 
-let io;
-
 export const initSocket = (server) => {
     if (!global.io) {
         global.io = new Server(server);

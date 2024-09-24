@@ -5,8 +5,13 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { selectStudentInfo, setSubjectFetchingMessage } from "@/libs/redux";
+import {
+    selectStudentInfo,
+    setSettingMessage,
+    setSubjectFetchingMessage,
+} from "@/libs/redux";
 import { socket } from "@/libs/socket/socket-client";
+
 
 import { UetContainer } from "@layout";
 
@@ -30,12 +35,19 @@ export default function Home() {
             dispatch(setSubjectFetchingMessage(value));
         }
 
+        function onCalendarAPIStatus(value: string) {
+            dispatch(setSettingMessage(value));
+            console.log(value);
+        }
+
         socket.on("course_api_progress", onCourseAPIStatus);
+        socket.on("calendar_api_progress", onCalendarAPIStatus);
         socket.on("disconnect", onDisconnect);
 
         return () => {
             socket.off("disconnect", onDisconnect);
             socket.off("course_api_progress", onCourseAPIStatus);
+            socket.off("calendar_api_progress", onCalendarAPIStatus);
         };
     }, []);
 

@@ -1,13 +1,15 @@
 "use client";
 
+import { useEffect } from "react";
+import { TbCalendarMonth, TbSchool } from "react-icons/tb";
+
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import {
     selectCalendarInfo,
     selectStudentInfo,
     setPreviewCalendar,
 } from "@/libs/redux";
-import { useEffect } from "react";
-import { TbCalendarMonth, TbSchool } from "react-icons/tb";
+import { formatDay } from "@/libs/utils";
 
 import IconBlock from "./components/icon_block";
 import InfoBlock, { IInfoBlockItem } from "./components/info_block";
@@ -23,13 +25,13 @@ export default function DetailTab() {
     const calendarInfo = useAppSelector(selectCalendarInfo);
     const dispatch = useAppDispatch();
 
-    if (!studentInfo || !calendarInfo) return;
-
-    const studentInfoSource = [
-        { title: "Fullname", value: studentInfo.name, highlight: true },
-        { title: "Class", value: studentInfo.officialClass },
-        { title: "Student ID", value: studentInfo.sid },
-    ] satisfies IInfoBlockItem[];
+    const studentInfoSource: IInfoBlockItem[] = studentInfo
+        ? [
+              { title: "Fullname", value: studentInfo.name, highlight: true },
+              { title: "Class", value: studentInfo.officialClass },
+              { title: "Student ID", value: studentInfo.sid },
+          ]
+        : [];
 
     const calendarInfoSources = calendarInfo.map<ICalInfoBlock>((subject) => {
         return {
@@ -54,8 +56,8 @@ export default function DetailTab() {
                         subject.sessionInHour[0] +
                         "h - " +
                         subject.sessionInHour[1] +
-                        "h / T" +
-                        subject.dayOfWeek,
+                        "h / " +
+                        formatDay(subject.dayOfWeek),
                 },
             ],
         };
@@ -73,8 +75,10 @@ export default function DetailTab() {
         handleCalendarHover(calendarInfo?.[0].dayOfWeek || "2");
     }, [calendarInfo]);
 
+    if (!studentInfo || !calendarInfo) return; 
+
     return (
-        <div className="space-y-5 p-5 w-full">
+        <div className="w-full space-y-5 p-5">
             <div className="flex flex-row gap-4">
                 <IconBlock icon={TbSchool} />
                 <InfoBlock data={studentInfoSource} />

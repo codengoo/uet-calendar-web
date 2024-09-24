@@ -20,11 +20,9 @@ export default function UetToastContainer({ classFont }: IToastProviderProps) {
     return (
         <ToastContainer
             position="top-center"
-            autoClose={3000}
+            autoClose={2000}
             limit={5}
             hideProgressBar
-            pauseOnFocusLoss
-            pauseOnHover
             theme="colored"
             closeButton={<></>}
             stacked

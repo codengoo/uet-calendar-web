@@ -14,8 +14,7 @@ interface IInfoBlockProps {
 export default function InfoBlock({
     data,
     calendarMode,
-    onHover,
-    refValue,
+    onHover
 }: IInfoBlockProps) {
     return (
         <div

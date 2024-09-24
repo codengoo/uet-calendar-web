@@ -5,7 +5,7 @@ import { formatDay } from "@/libs/utils";
 
 export default function Preview() {
     const calendars = useAppSelector(selectPreviewCalendar);
-    const { dayName, date } = formatDay(calendars[0]?.dayOfWeek);
+    const { dayName, dateOfMonth: date } = formatDay(calendars[0]?.dayOfWeek);
 
     const sortedCalendars = [...calendars].sort(
         (a, b) => a.sessionInHour[0] - b.sessionInHour[0],

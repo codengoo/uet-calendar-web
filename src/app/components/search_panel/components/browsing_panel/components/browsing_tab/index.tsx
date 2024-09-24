@@ -1,7 +1,7 @@
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 
 interface IBrowsingBodyPanelProps {
-    onTextChange?: Dispatch<SetStateAction<string>>;
+    onTextChange?: Dispatch<SetStateAction<string>> | ((value: string) => void);
     value?: string;
 }
 
