@@ -1,6 +1,6 @@
 import { UetCheckbox, UetDatePicker, UetTextInput } from "@ui";
 
-export default function SettingsBodyPanel() {
+export default function SettingsTab() {
     return (
         <div className="w-full space-y-2 p-5">
             <div className="grid grid-cols-6 gap-2">

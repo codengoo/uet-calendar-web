@@ -1,22 +1,19 @@
 "use client";
 
-import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { socket } from "@/libs/socket/socket-client";
 import Cookies from "js-cookie";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 
-import { selectStudentInfo, setSubjectFetchingMessage } from "@libs/redux";
-
-import Headline from "@components/headline";
-import Panel from "@components/panel";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { selectStudentInfo, setSubjectFetchingMessage } from "@/libs/redux";
+import { socket } from "@/libs/socket/socket-client";
 
 import { UetContainer } from "@layout";
 
-import DetailBodyPanel from "./components/detail_body_pannel";
-import Tab from "./components/panel/components/tab";
+import DetailPanel from "./components/detail_panel";
+import Headline from "./components/headline";
 import Preview from "./components/preview";
-import SettingsBodyPanel from "./components/settings_body_panel";
+import SearchPanel from "./components/search_panel";
 
 export default function Home() {
     const dispatch = useAppDispatch();
@@ -42,35 +39,18 @@ export default function Home() {
         };
     }, []);
 
-    const tabData = useMemo(
-        () => [
-            {
-                body: <DetailBodyPanel />,
-                title: "Detail",
-            },
-            {
-                body: <SettingsBodyPanel />,
-                title: "Settings",
-            },
-        ],
-        [],
-    );
-
     return (
         <div className="relative">
             <UetContainer>
                 <Headline />
-                <Panel />
+                <SearchPanel />
             </UetContainer>
 
             {data ? (
                 <>
                     <UetContainer id="detail">
                         <div className="flex flex-row justify-between">
-                            <div className="relative z-10 mb-16 h-fit w-1/2 rounded-2xl bg-white shadow-2xl">
-                                <Tab data={tabData} />
-                            </div>
-
+                            <DetailPanel />
                             <Preview />
                         </div>
                     </UetContainer>
@@ -90,9 +70,7 @@ export default function Home() {
                         </div>
                     </div>
                 </>
-            ) : (
-                <></>
-            )}
+            ) : null}
         </div>
     );
 }

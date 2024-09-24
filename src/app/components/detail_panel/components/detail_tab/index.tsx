@@ -18,7 +18,7 @@ interface ICalInfoBlock {
     data: IInfoBlockItem[];
 }
 
-export default function DetailBodyPanel() {
+export default function DetailTab() {
     const studentInfo = useAppSelector(selectStudentInfo);
     const calendarInfo = useAppSelector(selectCalendarInfo);
     const dispatch = useAppDispatch();

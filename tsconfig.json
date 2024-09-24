@@ -25,20 +25,8 @@
       "@/*": [
         "./src/*"
       ],
-      "@libs/*": [
-        "./src/libs/*"
-      ],
-      "@components/*": [
-        "./src/app/components/*"
-      ],
-      "@ui/*": [
-        "./src/components/ui/*"
-      ],
       "@ui": [
         "./src/components/ui"
-      ],
-      "@layout/*": [
-        "./src/components/layout/*",
       ],
       "@layout": [
         "./src/components/layout",

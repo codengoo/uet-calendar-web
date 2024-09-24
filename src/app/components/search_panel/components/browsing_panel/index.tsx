@@ -8,10 +8,10 @@ import {
     fetchSubjectsBySID,
     selectSubjectStatus,
     setSubjectFetchingMessage,
-} from "@libs/redux";
+} from "@/libs/redux";
 
-import UetBottomTab from "../panel/components/bottom_tab";
-import BrowsingBodyPanel from "../browsing_body_panel";
+import UetBottomTab from "../bottom_tab";
+import BrowsingTab from "./components/browsing_tab";
 
 export default function BrowsingPanel() {
     const [studentId, setStudentId] = useState("");
@@ -40,7 +40,7 @@ export default function BrowsingPanel() {
 
     return (
         <div className="flex flex-grow flex-col">
-            <BrowsingBodyPanel value={studentId} onTextChange={setStudentId} />
+            <BrowsingTab value={studentId} onTextChange={setStudentId} />
             <UetBottomTab
                 onClick={handleProcess}
                 status={message}

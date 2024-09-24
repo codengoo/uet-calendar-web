@@ -5,7 +5,7 @@ interface IBrowsingBodyPanelProps {
     value?: string;
 }
 
-export default function BrowsingBodyPanel({
+export default function BrowsingTab({
     onTextChange,
     value,
 }: IBrowsingBodyPanelProps) {

@@ -1,5 +1,5 @@
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchSubjectsBySID, type RootState } from '@libs/redux';
+import { fetchSubjectsBySID, type RootState } from '@/libs/redux';
 import { ICalendar, IStudent } from '@nghiavuive/uet-course';
 
 interface CourseState {

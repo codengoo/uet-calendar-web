@@ -1,5 +1,5 @@
 import { IGetCourseResponse } from "@/app/types";
-import axios from "@libs/axios";
+import axios from "@/libs/axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchSubjectsBySID = createAsyncThunk<IGetCourseResponse, string>(

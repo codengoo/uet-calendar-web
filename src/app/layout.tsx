@@ -2,10 +2,9 @@ import { StoreProvider } from "@/libs/redux";
 import type { Metadata } from "next";
 import { Kanit } from "next/font/google";
 
-import UetToastContainer from "@ui/toastify";
+import { UetToastContainer } from "@ui";
 
-import Footer from "@layout/footer";
-import Header from "@layout/header";
+import { UetFooter, UetHeader } from "@layout";
 
 import "./globals.css";
 
@@ -25,9 +24,9 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={kanit.className + " bg-gray-50"}>
-                <Header />
+                <UetHeader />
                 <StoreProvider>{children}</StoreProvider>
-                <Footer />
+                <UetFooter />
                 <UetToastContainer classFont={kanit.className} />
             </body>
         </html>

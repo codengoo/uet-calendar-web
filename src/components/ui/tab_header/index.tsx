@@ -1,4 +1,4 @@
-import BtnTab from "@/app/components/panel/components/btn_tab";
+import BtnTab from "@/app/components/search_panel/components/btn_tab";
 
 interface ITabHeaderProps {
     hasBottomBorder?: boolean;
