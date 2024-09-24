@@ -75,7 +75,7 @@ export default function DetailTab() {
         handleCalendarHover(calendarInfo?.[0].dayOfWeek || "2");
     }, [calendarInfo]);
 
-    if (!studentInfo || !calendarInfo) return; 
+    if (!studentInfo || !calendarInfo) return;
 
     return (
         <div className="w-full space-y-5 p-5">

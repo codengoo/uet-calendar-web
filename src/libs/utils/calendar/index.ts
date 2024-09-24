@@ -1,8 +1,7 @@
 import { calendar_v3, google } from "googleapis";
 
+import { parseStartDate } from "@/libs/utils";
 import { ISubjectCalendarSetting } from "@/types";
-
-import { parseStartDate } from "..";
 
 export function authenticate(token: string) {
     const oAuth2Client = new google.auth.OAuth2(
@@ -42,7 +41,7 @@ export async function createEvent(
     numRepeats: number,
     sub: ISubjectCalendarSetting,
 ): Promise<string | undefined | null> {
-    const [start, end, day] = parseStartDate(sub.day, sub.session);
+    const { start, end, day } = parseStartDate(sub.day, sub.session);
 
     const event = await GCalendar.events.insert({
         calendarId,

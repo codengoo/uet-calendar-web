@@ -1,11 +1,10 @@
-
 import { useAppSelector } from "@/hooks/redux";
 import { selectPreviewCalendar } from "@/libs/redux";
 import { formatDay } from "@/libs/utils";
 
 export default function Preview() {
     const calendars = useAppSelector(selectPreviewCalendar);
-    const { dayName, dateOfMonth: date } = formatDay(calendars[0]?.dayOfWeek);
+    const { dayName, dayOfMonth } = formatDay(calendars[0]?.dayOfWeek);
 
     const sortedCalendars = [...calendars].sort(
         (a, b) => a.sessionInHour[0] - b.sessionInHour[0],
@@ -16,7 +15,7 @@ export default function Preview() {
             <div className="mb-5 flex flex-col items-center gap-2">
                 <p className="text-lg font-light text-blue-600">{dayName}</p>
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-2xl font-light text-white">
-                    {date}
+                    {dayOfMonth}
                 </div>
             </div>
             <div className="border-x border-gray-300 py-5">
