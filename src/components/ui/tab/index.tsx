@@ -1,19 +1,19 @@
-import Btn from "@/components/ui/btn/inex";
-import UetBtnIcon from "@/components/ui/btn_icon";
-import TabHeader from "@/components/ui/tab_header";
+"use client"
+
 import { ReactNode, useState } from "react";
-import { TbDots, TbShare2 } from "react-icons/tb";
+import TabHeader from "./components/tab_header";
 
 interface ITabItem {
     title: string;
     body: ReactNode;
 }
 
-interface ITabProps {
+interface UetTabProps {
     data: ITabItem[];
+    tabHeaderComponent: ReactNode;
 }
 
-export default function Tab({ data = [] }: ITabProps) {
+export default function UetTab({ data = [], tabHeaderComponent }: UetTabProps) {
     const [currIndex, setCurrIndex] = useState(0);
 
     function handleChange(index: number) {
@@ -28,11 +28,7 @@ export default function Tab({ data = [] }: ITabProps) {
                 currentTabIndex={currIndex}
                 onChange={handleChange}
             >
-                <div className="flex flex-row gap-2">
-                    <UetBtnIcon icon={TbDots} />
-                    <UetBtnIcon icon={TbShare2} />
-                    <Btn title="Create" />
-                </div>
+                {tabHeaderComponent}
             </TabHeader>
             
             <div className="w-full">

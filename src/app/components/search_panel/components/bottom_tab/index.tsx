@@ -1,4 +1,4 @@
-import Btn from "@/components/ui/btn/inex";
+import UetBtn from "@/components/ui/btn";
 import { FaArrowRight } from "react-icons/fa6";
 import { TbLoader2 } from "react-icons/tb";
 
@@ -24,7 +24,7 @@ export default function UetBottomTab({
                     </div>
                 ) : null}
 
-                <Btn
+                <UetBtn
                     title="Explore data"
                     onClick={onClick}
                     disabled={disabled}

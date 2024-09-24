@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import courseSlice from './feature/course/course.slice'
 import previewSlice from './feature/preview/preview.slice'
+import settingSlice from './feature/setting/setting.slice'
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       course: courseSlice,
-      preview: previewSlice
+      preview: previewSlice,
+      setting: settingSlice
     }
   })
 }

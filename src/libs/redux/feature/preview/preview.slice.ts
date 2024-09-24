@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { type RootState } from '@libs/redux';
+import { type RootState } from '@/libs/redux';
 import { ICalendar } from '@nghiavuive/uet-course';
 
 interface PreviewState {

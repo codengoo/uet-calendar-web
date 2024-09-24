@@ -57,9 +57,9 @@ export default function Home() {
 
                     <div className="absolute left-[55%] top-[50vh] flex h-[75vh] flex-col items-center">
                         <div className="flex flex-shrink flex-col gap-5 overflow-hidden rounded-full">
-                            {[...new Array(50)].map((i) => (
+                            {[...new Array(50)].map((i, idx) => (
                                 <div
-                                    key={"dot__" + i}
+                                    key={"dot__" + idx}
                                     className="h-3 w-1 flex-none rounded-full bg-primary/30"
                                 ></div>
                             ))}

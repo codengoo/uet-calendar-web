@@ -43,7 +43,7 @@ const courseSlice = createSlice({
             state.status = "pending"
         })
         builder.addCase(fetchSubjectsBySID.rejected, (state, action) => {
-            // state.message = action.error.message || "error";
+            state.message = action.error.message || "error";
             state.status = "rejected";
             state.isFetched = true;
         })

@@ -1,4 +1,4 @@
-import TabHeader from "@/components/ui/tab_header";
+import TabHeader from "@/components/ui/tab/components/tab_header";
 
 import BrowsingPanel from "./components/browsing_panel";
 

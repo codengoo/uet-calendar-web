@@ -5,9 +5,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 import {
-    fetchSubjectsBySID,
-    selectSubjectStatus,
-    setSubjectFetchingMessage,
+    fetchSubjectsBySID, selectSubjectStatus, setSubjectFetchingMessage
 } from "@/libs/redux";
 
 import UetBottomTab from "../bottom_tab";
@@ -30,10 +28,7 @@ export default function BrowsingPanel() {
                 toast.success(message);
                 document
                     .getElementById("detail")
-                    ?.scrollIntoView({ behavior: "smooth" });
-
-                console.log(document.getElementById("detail"));
-                
+                    ?.scrollIntoView({ behavior: "smooth" });                
             }
         }
     }, [isFetched, status]);

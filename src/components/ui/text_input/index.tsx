@@ -11,7 +11,7 @@ export default function UetTextInput({
     return (
         <div className={className}>
             <div className={"mb-2 block"}>
-                <Label htmlFor={id} value={title} />
+                <Label htmlFor={id} value={title} disabled={props.disabled} />
             </div>
             <TextInput id={id} {...props} />
         </div>
