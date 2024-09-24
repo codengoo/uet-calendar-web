@@ -1,79 +1,79 @@
 "use client";
 
-import Container from "@/components/layout/conatainer";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { socket } from "@/libs/socket/socket-client";
 import Cookies from "js-cookie";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
+import { toast } from "react-toastify";
 
 import { selectStudentInfo, setSubjectFetchingMessage } from "@libs/redux";
 
 import Headline from "@components/headline";
 import Panel from "@components/panel";
 
+import { UetContainer } from "@layout";
+
 import DetailBodyPanel from "./components/detail_body_pannel";
 import Tab from "./components/panel/components/tab";
 import Preview from "./components/preview";
+import SettingsBodyPanel from "./components/settings_body_panel";
 
 export default function Home() {
     const dispatch = useAppDispatch();
     const data = useAppSelector(selectStudentInfo);
 
     useEffect(() => {
-        if (socket.connected) {
-            console.log(socket.id);
-            Cookies.set("socket_id", socket.id || "");
-        }
-
-        function onConnect() {
-            console.log("connected");
-            console.log("transport: ", socket.io.engine.transport.name);
-        }
+        socket.connected && Cookies.set("socket_id", socket.id || "");
 
         function onDisconnect() {
-            console.log("disconnected");
+            toast.error("Socket disconnected");
         }
 
-        socket.on("course_api_progress", (value) => {
-            console.log(value);
+        function onCourseAPIStatus(value: string) {
             dispatch(setSubjectFetchingMessage(value));
-        });
+        }
 
-        socket.on("connect", onConnect);
+        socket.on("course_api_progress", onCourseAPIStatus);
         socket.on("disconnect", onDisconnect);
 
         return () => {
-            socket.off("connect", onConnect);
             socket.off("disconnect", onDisconnect);
+            socket.off("course_api_progress", onCourseAPIStatus);
         };
     }, []);
 
+    const tabData = useMemo(
+        () => [
+            {
+                body: <DetailBodyPanel />,
+                title: "Detail",
+            },
+            {
+                body: <SettingsBodyPanel />,
+                title: "Settings",
+            },
+        ],
+        [],
+    );
+
     return (
         <div className="relative">
-            <Container>
+            <UetContainer>
                 <Headline />
                 <Panel />
-            </Container>
+            </UetContainer>
 
             {data ? (
                 <>
-                    <Container id="detail">
+                    <UetContainer id="detail">
                         <div className="flex flex-row justify-between">
-                            <div className="relative z-10 mb-16 w-1/2 rounded-2xl bg-white shadow-2xl">
-                                <Tab
-                                    data={[
-                                        {
-                                            body: <DetailBodyPanel />,
-                                            title: "Detail",
-                                        },
-                                        { body: <></>, title: "Settings" },
-                                    ]}
-                                />
+                            <div className="relative z-10 mb-16 h-fit w-1/2 rounded-2xl bg-white shadow-2xl">
+                                <Tab data={tabData} />
                             </div>
 
                             <Preview />
                         </div>
-                    </Container>
+                    </UetContainer>
 
                     <div className="absolute left-[55%] top-[50vh] flex h-[75vh] flex-col items-center">
                         <div className="flex flex-shrink flex-col gap-5 overflow-hidden rounded-full">

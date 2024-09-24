@@ -7,7 +7,7 @@ interface INavLinkProps {
     mode?: "color" | "white"
 }
 
-export default function NavLink({ href, title, icon: Icon, mode = "color" }: INavLinkProps) {
+export default function UetNavLink({ href, title, icon: Icon, mode = "color" }: INavLinkProps) {
     return (
         <div className={
             "py-1 rounded-lg group " +

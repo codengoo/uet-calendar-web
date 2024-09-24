@@ -1,19 +1,19 @@
-import NavLink from "@ui/navlink";
+import { UetNavLink } from "@ui";
 
 export default function Nav() {
     return (
         <nav className="hidden md:block">
-            <ul className="flex flex-row list-none gap-5">
+            <ul className="flex list-none flex-row gap-5">
                 <li>
-                    <NavLink href="#" title="Home" />
+                    <UetNavLink href="#" title="Home" />
                 </li>
 
                 <li>
-                    <NavLink href="#" title="Guideline" />
+                    <UetNavLink href="#" title="Guideline" />
                 </li>
 
                 <li>
-                    <NavLink href="#" title="Changelog" />
+                    <UetNavLink href="#" title="Changelog" />
                 </li>
             </ul>
         </nav>

@@ -5,7 +5,10 @@
         "source.removeUnusedImports": "explicit"
     },
     "cSpell.words": [
+        "Datepicker",
         "flowbite",
-        "reduxjs"
+        "navlink",
+        "reduxjs",
+        "toastify"
     ]
 }

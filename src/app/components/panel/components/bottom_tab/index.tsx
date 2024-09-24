@@ -8,7 +8,7 @@ interface IBottomPanel {
     isLoading?: boolean;
     disabled?: boolean;
 }
-export default function BottomPanel({
+export default function UetBottomTab({
     onClick,
     status,
     isLoading,

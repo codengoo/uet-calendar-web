@@ -2,8 +2,8 @@
     "importOrder": [
         "^@libs/(.*)$",
         "^@components/(.*)$",
-        "^@ui/(.*)$",
-        "^@layout/(.*)$",
+        "^@ui/?(.*)$",
+        "^@layout/?(.*)$",
         "^[./]"
     ],
     "importOrderSeparation": true,

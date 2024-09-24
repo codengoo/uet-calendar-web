@@ -1,5 +1,5 @@
 import Btn from "@/components/ui/btn/inex";
-import BtnIcon from "@/components/ui/btn_icon";
+import UetBtnIcon from "@/components/ui/btn_icon";
 import TabHeader from "@/components/ui/tab_header";
 import { ReactNode, useState } from "react";
 import { TbDots, TbShare2 } from "react-icons/tb";
@@ -29,11 +29,12 @@ export default function Tab({ data = [] }: ITabProps) {
                 onChange={handleChange}
             >
                 <div className="flex flex-row gap-2">
-                    <BtnIcon icon={TbDots} />
-                    <BtnIcon icon={TbShare2} />
+                    <UetBtnIcon icon={TbDots} />
+                    <UetBtnIcon icon={TbShare2} />
                     <Btn title="Create" />
                 </div>
             </TabHeader>
+            
             <div className="w-full">
                 {data.map((item, index) => (
                     <div

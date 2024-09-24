@@ -16,7 +16,7 @@ const contextClass = {
     dark: "bg-white-600 font-gray-300",
 };
 
-export default function ToastProvider({ classFont }: IToastProviderProps) {
+export default function UetToastContainer({ classFont }: IToastProviderProps) {
     return (
         <ToastContainer
             position="top-center"

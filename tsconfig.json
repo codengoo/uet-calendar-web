@@ -34,9 +34,15 @@
       "@ui/*": [
         "./src/components/ui/*"
       ],
+      "@ui": [
+        "./src/components/ui"
+      ],
       "@layout/*": [
-        "./src/components/layout/*"
-      ]
+        "./src/components/layout/*",
+      ],
+      "@layout": [
+        "./src/components/layout",
+      ],
     }
   },
   "include": [

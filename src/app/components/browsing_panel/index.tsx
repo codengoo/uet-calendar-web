@@ -10,7 +10,7 @@ import {
     setSubjectFetchingMessage,
 } from "@libs/redux";
 
-import BottomPanel from "../bottom_panel";
+import UetBottomTab from "../panel/components/bottom_tab";
 import BrowsingBodyPanel from "../browsing_body_panel";
 
 export default function BrowsingPanel() {
@@ -41,7 +41,7 @@ export default function BrowsingPanel() {
     return (
         <div className="flex flex-grow flex-col">
             <BrowsingBodyPanel value={studentId} onTextChange={setStudentId} />
-            <BottomPanel
+            <UetBottomTab
                 onClick={handleProcess}
                 status={message}
                 disabled={!isFetched || studentId.length !== 8}

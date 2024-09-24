@@ -2,17 +2,17 @@ import LogoImg from "@/assets/images/icon-192.png";
 import LogoWhite from "@/assets/images/icon-white.png";
 import Image from "next/image";
 
-interface ILogoProps {
+interface UetLogoProps {
     mode?: "color" | "white";
     direction?: "vertical" | "horizontal";
     className?: string;
 }
 
-export default function Logo({
+export default function UetLogo({
     mode = "color",
     direction = "horizontal",
     className = "",
-}: ILogoProps) {
+}: UetLogoProps) {
     return (
         <div
             className={

@@ -1,11 +1,11 @@
 import React from "react";
 
-interface IContainerProps {
+interface UetContainerProps {
     children: React.ReactNode;
     id?: string;
 }
 
-export default function Container({ children, id }: IContainerProps) {
+export default function UetContainer({ children, id }: UetContainerProps) {
     return (
         <section
             id={id}
